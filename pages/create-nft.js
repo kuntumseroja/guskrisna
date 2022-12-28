@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Web3Modal from 'web3modal'
 const projectId = "2HWku8xOalcb7LayS4aOBnuUMf8"
 const projectSecretKey = "0d64e6c5e1c60083cbfbe276b963fd87"
-const authorization = "Basic " + btoa(projectId + ":" + projectSecretKey);
+const auth = "Basic " + btoa(projectId + ":" + projectSecretKey);
 
 // const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 
