@@ -3,8 +3,20 @@ import { ethers } from 'ethers'
 import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { useRouter } from 'next/router'
 import Web3Modal from 'web3modal'
+const projectId = "2HWku8xOalcb7LayS4aOBnuUMf8"
+const projectSecretKey = "0d64e6c5e1c60083cbfbe276b963fd87"
+const authorization = "Basic " + btoa(projectId + ":" + projectSecretKey);
 
-const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
+// const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
+
+const client = create({
+  host: 'ipfs.infura.io',
+  port: 5001,
+  protocol: 'https',
+  headers: {
+    authorization: auth,
+  },
+});
 
 import {
   marketplaceAddress
@@ -26,7 +38,7 @@ export default function CreateItem() {
           progress: (prog) => console.log(`received: ${prog}`)
         }
       )
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`
+      const url = `https://sugema.infura-ipfs.io/ipfs/${added.path}`
       setFileUrl(url)
     } catch (error) {
       console.log('Error uploading file: ', error)
@@ -41,7 +53,7 @@ export default function CreateItem() {
     })
     try {
       const added = await client.add(data)
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`
+      const url = `https://sugema.infura-ipfs.io/ipfs/${added.path}`
       /* after file is uploaded to IPFS, return the URL to use it in the transaction */
       return url
     } catch (error) {
